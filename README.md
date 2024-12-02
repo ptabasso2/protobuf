@@ -83,9 +83,11 @@ This data is sent to Datadog's **Continuous Profiler** for analysis.
    - Follow the [Docker installation guide](https://docs.docker.com/get-docker/).
 
 2. **Build and Start Services**:
+   
+   Make sure before this that you have a valid Datadog API Key. 
    From the root project directory (where the `docker-compose.yml` file is located), run:
    ```bash
-   docker-compose up --build
+   DD_API_KEY=<your api key> docker-compose up -d --build
    ```
 
    This will:

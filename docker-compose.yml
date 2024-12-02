@@ -7,7 +7,7 @@ services:
     hostname: dd-agent-dogfood-jmx
     environment:
       - DD_HOSTNAME=datadog
-      - DD_API_KEY=xxxxxxxxxxxxxxxxxxxxx
+      - DD_API_KEY
       - DD_APM_ENABLED=true
       - DD_APM_NON_LOCAL_TRAFFIC=true 
       - DD_PROCESS_AGENT_ENABLED=true 
