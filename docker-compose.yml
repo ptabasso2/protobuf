@@ -74,6 +74,7 @@ services:
       - DD_LOGS_INJECTION=true
       - DD_RUNTIME_METRICS_ENABLED=true
       - DD_PROFILING_ENABLED=1
+      - SERVER_ADDRESS=server
 #    stdin_open: true
 #    tty: true
 #    command: "bash -c 'sleep infinity'"

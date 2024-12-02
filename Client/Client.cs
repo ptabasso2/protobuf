@@ -8,7 +8,7 @@ using Communication;
 public class Client
 {
     private readonly ILogger<Client> _logger;
-    private const string ServerAddress = "server";
+    private string serverAddress = Environment.GetEnvironmentVariable("SERVER_ADDRESS") ?? "127.0.0.1";
     private const int Port = 5000;
 
     public Client(ILogger<Client> logger)
@@ -44,7 +44,7 @@ public class Client
                 // Establish connection to the server
                 using var client = new TcpClient();
                 _logger.LogInformation("Connecting to server...");
-                client.Connect(ServerAddress, Port);
+                client.Connect(serverAddress, Port);
                 _logger.LogInformation("Connected to server.");
 
                 // Send the Protobuf message

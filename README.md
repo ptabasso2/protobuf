@@ -100,17 +100,37 @@ This data is sent to Datadog's **Continuous Profiler** for analysis.
    - Use Datadog's **APM** and **Continuous Profiler** to analyze the behavior.
 
 ### Option 2: Running Locally Without Docker
-1. **Run the Server**:
-   Navigate to the `Server` directory and run:
+
+1. **Install the Datadog .Net tracing library**:
+Open a terminal and run the following commands:
+```bash
+export TRACER_VERSION=3.4.1
+mkdir -p /var/log/datadog
+mkdir -p /opt/datadog
+curl -LO https://github.com/DataDog/dd-trace-dotnet/releases/download/v${TRACER_VERSION}/datadog-dotnet-apm_${TRACER_VERSION}_amd64.deb
+dpkg -i ./datadog-dotnet-apm_${TRACER_VERSION}_amd64.deb
+```
+
+2. **Run the Server**:
+   In a first terminal, navigate to the `Server` directory and run:
    ```bash
-   dotnet run --project Server
+   . ./instrument.env
+   dotnet run
    ```
 
-2. **Run the Client**:
+3. **Run the Client**:
    Open a new terminal, navigate to the `Client` directory, and run:
    ```bash
-   dotnet run --project Client
+   . ./instrument.env
+   dotnet run
    ```
+
+4. **(Optional) Running the Client multiple times**:
+The last command will run the client only one. Once the result is returned to the client, it will then exit.
+Therefore if you wish to run several requests, in the same terminal, you can run:
+```bash
+while true; do dotnet run; sleep 2; done
+```
 
 ---
 
